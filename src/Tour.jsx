@@ -9,7 +9,7 @@ export default function Tour() {
       <p>no current tour dates</p>
       <Parallax
         blur={0}
-        bgImage="./images/yc_2021.jpg" 
+        bgImage={process.env.PUBLIC_URL + '/images/yc_2021.jpg'}
         strength={50}
         className="parallax-tour"
       >

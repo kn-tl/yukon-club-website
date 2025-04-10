@@ -7,7 +7,7 @@ export default function Imageblock() {
     <div className="image-container">
       <Parallax
         blur={0}
-        bgImage="./images/Summum_Single.jpg"
+        bgImage={process.env.PUBLIC_URL + '/images/Summum_Single.jpg'}
         strength={500}
         style={{ height: '500px' }} // Je kunt deze waarde aanpassen naar behoefte
       >
