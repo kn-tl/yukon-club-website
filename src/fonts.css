@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Larsseit Light';
+    src: url('./fonts/Larsseit Light Artwork.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Larsseit Medium';
+    src: url('./fonts/Larsseit Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+} 

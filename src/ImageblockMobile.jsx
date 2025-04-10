@@ -1,15 +1,19 @@
-import React from "react"
+import React from 'react';
 import { Parallax } from 'react-parallax';
+import summumImage from './images/Summum_Single.jpg';
 
-export default function ImageblockMobile() {
-  return (
-    <div className="image-container-mobile">
-      <Parallax
-        blur={0}
-        bgImage="./images/Summum_Single.jpg" 
-        strength={500}
-      >
-      </Parallax>
-    </div>
-  );
-}
+const ImageblockMobile = () => {
+    return (
+        <div>
+            <Parallax
+                bgImage={summumImage}
+                strength={200}
+            >
+                <div style={{ height: 500 }}>
+                </div>
+            </Parallax>
+        </div>
+    );
+};
+
+export default ImageblockMobile;
