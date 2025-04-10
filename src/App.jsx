@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-      <Router>
+      <Router basename="/yukon-club-website">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
