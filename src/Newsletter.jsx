@@ -3,76 +3,63 @@ import './Newsletter.css';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [status, setStatus] = useState('');
+  const [isValid, setIsValid] = useState(true);
 
-  const handleSubscription = async (event) => {
-    event.preventDefault();
-
-    // Valideer het e-mailadres voordat je de API-aanroep doet
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address.');
-      setMessage('');
+      setIsValid(false);
+      setStatus('Please enter a valid email address');
       return;
     }
 
+    setIsValid(true);
+    setStatus('Subscribing...');
+
     try {
-      // API call naar je server
-      const response = await fetch('http://localhost:3000/subscribe', {
+      const response = await fetch('https://api.example.com/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: email,
-          registrationDate: new Date().toISOString(),
-          actief: true
-        }),
+        body: JSON.stringify({ email }),
       });
 
-      // Verwerk de reactie van je server
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      if (response.ok) {
+        setStatus('Thank you for subscribing!');
+        setEmail('');
+      } else {
+        setStatus('An error occurred. Please try again.');
       }
-
-      const result = await response.json();
-      setMessage('Thank you for subscribing!');
-      setError('');
-      setEmail(''); // Optioneel: wis het e-mailveld na een succesvolle inschrijving
-    } catch (err) {
-      // Log de fout en stel een gebruikersvriendelijke foutmelding in
-      setError('There was a problem with your subscription.');
-      setMessage('');
-      console.error(err);
+    } catch (error) {
+      setStatus('An error occurred. Please try again.');
     }
   };
 
-  // Functie om te valideren of de ingevoerde tekst een geldig e-mailadres is
   const validateEmail = (email) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}$/;
     return re.test(String(email).toLowerCase());
   };
 
   return (
-    <section className="newsletter-section">
-      <div className="newsletter-content">
-        <h3>Join the Club</h3>
-        <p>Stay updated with the latest news and releases.</p>
-        <form onSubmit={handleSubscription} className="newsletter-form">
+    <div className="newsletter-container">
+      <h2>Subscribe to our newsletter</h2>
+      <p>Stay updated with our latest news and releases</p>
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="newsletter-input"
-            aria-label="Email for newsletter"
-            required
+            className={!isValid ? 'invalid' : ''}
           />
-          <button type="submit" className="newsletter-button">Subscribe</button>
-        </form>
-        {message && <div className="newsletter-message">{message}</div>}
-        {error && <div className="newsletter-error">{error}</div>}
-      </div>
-    </section>
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+      {status && <p className="status-message">{status}</p>}
+    </div>
   );
 }
