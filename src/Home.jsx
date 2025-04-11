@@ -16,21 +16,20 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      {isMobile ? (
-        <>
-          <div style={{ height: '100px', overflow: 'hidden' }}>
-          <ImageblockMobile />
+    <main className="main-container">
+      <div className="content-section">
+        {isMobile ? (
+          <div className="mt-16">
+            <ImageblockMobile />
           </div>
-          <Newsletter /> {/* Direct zichtbaar */}
-        </>
-      ) : (
-        <>
-          <Imageblock /> {/* Volledige imageblock inclusief video */}
-          <Newsletter />
-        </>
-      )}
-    </div>
+        ) : (
+          <div className="mt-16">
+            <Imageblock />
+          </div>
+        )}
+        <Newsletter />
+      </div>
+    </main>
   );
 }
 

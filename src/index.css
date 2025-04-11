@@ -18,7 +18,7 @@
 
 @layer components {
   .main-container {
-    @apply pt-48 px-4 min-h-screen flex flex-col;
+    @apply pt-40 md:pt-48 px-4 min-h-screen flex flex-col;
   }
 
   .content-section {
@@ -26,11 +26,11 @@
   }
 
   .nav-link {
-    @apply text-lg py-2 transition-colors duration-200;
+    @apply text-lg transition-colors duration-200;
   }
 
   .social-icons {
-    @apply flex justify-center items-center space-x-6;
+    @apply flex justify-center items-center space-x-6 mt-4;
   }
 
   .social-icon {

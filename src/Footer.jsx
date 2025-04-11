@@ -1,19 +1,16 @@
 import React from 'react';
-import './index.css'
-import './Footer.css'
-import SocialMediaIcons from './SocialMediaIcons';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="social-icons">
-        <SocialMediaIcons />
-      </div>
-      <div className="copyright">
-        © yukon club 2025
-      </div>
-      <div className="policies">
-        <a href="/cookie-policy">cookie policy</a> | <a href="/privacy-policy">privacy policy</a>
+    <footer className="w-full py-8 mt-8 border-t border-[#646cff]/20">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col items-center">
+        <div className="text-center my-2">
+          © yukon club 2025
+        </div>
+        <div className="text-center my-2">
+          <Link to="/cookie-policy" className="mx-2">cookie policy</Link> | <Link to="/privacy-policy" className="mx-2">privacy policy</Link>
+        </div>
       </div>
     </footer>
   );
